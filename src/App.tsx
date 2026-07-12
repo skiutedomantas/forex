@@ -6,9 +6,11 @@ function App() {
 
   return (
     <>
+    <div className="bg-black text-white font-[Jetbrains]">
     <Header></Header>
     <LiveMarkets></LiveMarkets>
     <Rate></Rate>
+    </div>
     </>
   )
 }

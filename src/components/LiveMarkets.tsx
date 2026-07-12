@@ -46,15 +46,11 @@ export default function LiveMarkets(){
     }
     fetchChanges();
   }, []);
-    const previousDayRate = changes ? changes[1].rate : null;
-    const todayDayRate = changes? changes[0].rate : null;
-    const change = ((todayDayRate * 100 / previousDayRate) - 100).toFixed(2);
-
 
   return(
     <>
-    <div className="live-market-container">
-      <ul>
+    <div className="overflow-hidden before:content-['\2022_LIVE_MARKET'] before:text-black before:top-22.5 before:z-1000 before:left-0 before:px-6 before:py-2.5 before:bg-neongreen before:absolute">
+      <ul className="flex text-sm animate-carousel">
       {pairs.map((pair)=>{
          const oldPair = changes?.find(
         (item) => item.quote === pair.quote
@@ -64,7 +60,7 @@ export default function LiveMarkets(){
         ? (((pair.rate - oldPair.rate) / oldPair.rate) * 100).toFixed(2)
         : null;
         return (
-          <li key={`${pair.base}${pair.quote}`}><span className="pair">{pair.base}/{pair.quote}</span> <span className="rate">{pair.rate}</span> <span className={difference >= 0 ? 'positive' : "negative"}>{difference}%</span></li>
+          <li className="flex gap-2 bg-neutral-800 px-6 py-3 border-l border-neutral-600" key={`${pair.base}${pair.quote}`}><span className="pair">{pair.base}/{pair.quote}</span> <span className="rate">{pair.rate}</span> <span className={difference >= 0 ? 'positive' : "negative"}>{difference}%</span></li>
         )
       })}
       {pairs.map((pair)=>{
@@ -76,7 +72,7 @@ export default function LiveMarkets(){
         ? (((pair.rate - oldPair.rate) / oldPair.rate) * 100).toFixed(2)
         : null;
         return (
-          <li aria-hidden key={`${pair.base}${pair.quote}`}><span className="pair">{pair.base}/{pair.quote}</span> <span className="rate">{pair.rate}</span> <span className={difference >= 0 ? 'positive' : "negative"}>{difference}%</span></li>
+          <li className="flex gap-2 bg-neutral-800 px-6 py-3 border-l border-neutral-600" aria-hidden key={`${pair.base}${pair.quote}`}><span className="pair">{pair.base}/{pair.quote}</span> <span className="rate">{pair.rate}</span> <span className={difference >= 0 ? 'positive' : "negative"}>{difference}%</span></li>
         )
       })}
       </ul>

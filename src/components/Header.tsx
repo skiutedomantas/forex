@@ -23,9 +23,9 @@ export default function Header(){
       }, []);
   return(
     <>
-    <header>
+    <header className="flex justify-between mx-8 py-8 ">
       <img src={logo} alt="" />
-      <ul>
+      <ul className="flex gap-4 text-neutral-400">
         <li>{amount} Currencies</li>
         <li><span>&#8729;</span></li>
         <li>EOD</li>
