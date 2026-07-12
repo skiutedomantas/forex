@@ -1,0 +1,243 @@
+@font-face {
+  font-family: "Jetbrains";
+  src: url("./assets/fonts/jetbrains-mono/jetbrains-mono-variable.ttf");
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-family: "Jetbrains";
+}
+
+h2 {
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  display: flex;
+  gap: 1rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 2rem;
+}
+
+.live-market-container {
+  overflow-x: hidden;
+  position: relative;
+}
+
+.live-market-container::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes spin {
+  from {
+    translate: 0;
+  }
+  to {
+    translate: -100%;
+  }
+}
+
+.live-market-container::before {
+  content: "\2022 LIVE MARKETS";
+  color: black;
+  background-color: greenyellow;
+  font-family: "Jetbrains";
+  font-size: 12px;
+  position: absolute;
+  top: 25%;
+  bottom: 25%;
+  padding: 0.6rem 1rem;
+  z-index: 10000;
+}
+
+.live-market-container li {
+  background-color: rgb(39, 38, 38);
+  padding: 0.4rem 1rem;
+  border-left: 1px solid rgb(62, 62, 62);
+  white-space: nowrap;
+}
+
+.live-market-container ul {
+  gap: 0;
+  animation: spin 20s infinite linear;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-button {
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  background-color: rgb(73, 73, 73);
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+}
+
+.dropdown-button img {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  mix-blend-mode: lighten;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 112px;
+  height: 50vh;
+  margin-top: 4px;
+  background-color: rgb(39, 38, 38);
+  border-radius: 6px;
+  overflow-y: scroll;
+  z-index: 10;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: rgb(39, 38, 38);
+}
+
+.dropdown-item img {
+  width: 24px;
+  height: 18px;
+  object-fit: cover;
+}
+
+.main-rate-container {
+  background-color: rgb(24, 24, 24);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border-radius: 20px;
+}
+
+.exchange-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: center;
+}
+
+.send-container,
+.receive-container {
+  background-color: rgb(59, 58, 58);
+  border: 1px solid rgb(95, 95, 95);
+  padding: 2rem;
+  border-radius: 20px;
+  min-width: 400px;
+}
+
+.container-below {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.container-below div {
+  display: flex;
+  gap: 2rem;
+}
+
+.rate-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.numbers-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.exchange-button {
+  background-color: rgb(59, 58, 58);
+  border: none;
+  height: 60px;
+  width: 60px;
+  border-radius: 10px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.input-amount {
+  background-color: rgb(59, 58, 58);
+  border: none;
+  color: white;
+  font-family: "Jetbrains";
+  font-size: 30px;
+  max-width: 200px;
+  margin-top: 1rem;
+}
+
+.input-amount:focus {
+  outline: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.dropdown-arrow {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  fill: white;
+}
+
+h3 {
+  text-transform: uppercase;
+  margin: 0;
+  color: rgb(160, 160, 160);
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.amount {
+  font-size: 30px;
+  color: greenyellow;
+  margin: 0;
+  margin-top: 1rem;
+}
+
+.pair {
+  color: rgb(147, 147, 147);
+  font-size: 12px;
+}
+
+.rate {
+  font-size: 12px;
+}
+
+.positive {
+  color: greenyellow;
+  font-size: 12px;
+}
+
+.negative {
+  color: red;
+  font-size: 12px;
+}
