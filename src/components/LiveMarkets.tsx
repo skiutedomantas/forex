@@ -60,7 +60,7 @@ export default function LiveMarkets(){
         ? (((pair.rate - oldPair.rate) / oldPair.rate) * 100).toFixed(2)
         : null;
         return (
-          <li className="flex gap-2 bg-neutral-800 px-6 py-3 border-l border-neutral-600" key={`${pair.base}${pair.quote}`}><span className="pair">{pair.base}/{pair.quote}</span> <span className="rate">{pair.rate}</span> <span className={difference >= 0 ? 'positive' : "negative"}>{difference}%</span></li>
+          <li className="flex gap-2 bg-neutral-800 px-6 py-3 border-l border-neutral-600" key={`${pair.base}${pair.quote}`}><span className="text-neutral-500">{pair.base}/{pair.quote}</span> <span>{pair.rate}</span> <span className={difference >= 0 ? 'text-neongreen' : "text-red-600"}>{difference}%</span></li>
         )
       })}
       {pairs.map((pair)=>{
@@ -72,7 +72,7 @@ export default function LiveMarkets(){
         ? (((pair.rate - oldPair.rate) / oldPair.rate) * 100).toFixed(2)
         : null;
         return (
-          <li className="flex gap-2 bg-neutral-800 px-6 py-3 border-l border-neutral-600" aria-hidden key={`${pair.base}${pair.quote}`}><span className="pair">{pair.base}/{pair.quote}</span> <span className="rate">{pair.rate}</span> <span className={difference >= 0 ? 'positive' : "negative"}>{difference}%</span></li>
+          <li className="flex gap-2 bg-neutral-800 px-6 py-3 border-l border-neutral-600" aria-hidden key={`${pair.base}${pair.quote}`}><span className="text-neutral-500">{pair.base}/{pair.quote}</span> <span>{pair.rate}</span> <span className={difference >= 0 ? 'text-neongreen' : "text-red-600"}>{difference}%</span></li>
         )
       })}
       </ul>

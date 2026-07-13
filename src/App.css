@@ -22,3 +22,7 @@
 @utility animate-carousel {
   animation: carousel 20s linear infinite;
 }
+
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}

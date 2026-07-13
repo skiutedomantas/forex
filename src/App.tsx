@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-    <div className="bg-black text-white font-[Jetbrains]">
+    <div className="bg-black h-screen text-white font-[Jetbrains]">
     <Header></Header>
     <LiveMarkets></LiveMarkets>
     <Rate></Rate>
