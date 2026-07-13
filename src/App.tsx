@@ -2,6 +2,7 @@ import LiveMarkets from "./components/LiveMarkets";
 import Header from "./components/Header";
 import Rate from "./components/Rate";
 import "./App.css";
+import Stats from "./components/Stats";
 function App() {
 
   return (
@@ -10,6 +11,7 @@ function App() {
     <Header></Header>
     <LiveMarkets></LiveMarkets>
     <Rate></Rate>
+    <Stats></Stats>
     </div>
     </>
   )
