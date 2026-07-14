@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Chart from "./Chart";
 
 export default function Stats(){
   const [stats, setStats] = useState([]);
@@ -27,7 +28,7 @@ export default function Stats(){
       }, []);
   return (
     <>
-      <p>Open {stats.length > 1 ? stats[1].rate : "..."}</p>
+    <p>Open {stats.length > 1 ? stats[1].rate : "..."}</p>
     <p>Last {stats.length > 1 ? stats[0].rate : "..."}</p>
     <p>
       Change {stats.length > 1 

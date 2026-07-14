@@ -3,15 +3,17 @@ import Header from "./components/Header";
 import Rate from "./components/Rate";
 import "./App.css";
 import Stats from "./components/Stats";
+import Chart from "./components/Chart";
 function App() {
 
   return (
     <>
-    <div className="bg-black h-screen text-white font-[Jetbrains]">
+    <div className="text-white font-[Jetbrains]">
     <Header></Header>
     <LiveMarkets></LiveMarkets>
     <Rate></Rate>
     <Stats></Stats>
+    <Chart></Chart>
     </div>
     </>
   )
