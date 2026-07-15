@@ -11,7 +11,7 @@ export default function Stats(){
         async function  fetchStat(){
           try {
             const response = await fetch(
-          `https://api.frankfurter.dev/v2/rates?from=${yesterday}&quotes=USD&base=EUR`
+          `https://api.frankfurter.dev/v2/rates?from=${yesterday}&quotes=EUR&base=USD`
             );
             if (!response.ok){
               throw new Error("Something wrong");
@@ -49,15 +49,15 @@ export default function Stats(){
       <div className="flex flex-col bg-neutral-900 p-6 rounded-2xl w-40  ">
         <p className="uppercase text-neutral-500 font-light text-md">Change</p>
         <p className={`text-xl ${change > 0 ? 'text-neongreen' : 'text-red-600'}`}>
-          {change > 0 ? '+' : '-'}
+          {change > 0 ? '+' : ''}
           {change}
         </p>
       </div>
       <div className="flex flex-col bg-neutral-900 p-6 rounded-2xl w-40  ">
         <p className="uppercase text-neutral-500 font-light text-md">% Change</p>
         <p className={`text-xl flex items-center gap-1 ${percentChange > 0 ? 'text-neongreen' : 'text-red-600'}`}>
-          <svg className={ percentChange > 0 ? ('-rotate-90 fill-neongreen w-4 h-3') : ('rotate-90 fill-red w-4 h-3') } xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M91.2 36.9c-12.4-6.8-27.4-6.5-39.6 .7S32 57.9 32 72l0 368c0 14.1 7.5 27.2 19.6 34.4s27.2 7.5 39.6 .7l336-184c12.8-7 20.8-20.5 20.8-35.1s-8-28.1-20.8-35.1l-336-184z"/></svg>
-          {percentChange > 0 ? '+' : '-'}
+          <svg className={ percentChange > 0 ? ('-rotate-90 fill-neongreen w-4 h-3') : ('rotate-90 fill-red-600 w-4 h-3') } xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M91.2 36.9c-12.4-6.8-27.4-6.5-39.6 .7S32 57.9 32 72l0 368c0 14.1 7.5 27.2 19.6 34.4s27.2 7.5 39.6 .7l336-184c12.8-7 20.8-20.5 20.8-35.1s-8-28.1-20.8-35.1l-336-184z"/></svg>
+          {percentChange > 0 ? '+' : ''}
           {percentChange}%
         </p>
       </div>
