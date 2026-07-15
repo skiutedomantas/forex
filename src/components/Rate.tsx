@@ -2,15 +2,10 @@ import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
 import exchange from '../assets/images/icon-exchange.svg';
 
-export default function Rate(){
+export default function Rate({sendCurrent, setSendCurrent, receiveCurrent, setReceiveCurrent, rate}){
     const [currencies, setCurrencies] = useState([]);
-    const [sendCurrent, setSendCurrent] = useState('USD');
-    const [receiveCurrent, setReceiveCurrent] = useState('EUR');
-    const [rate, setRate] = useState(null);
     const [amount, setAmount] = useState(1000);
 
-
-  
     useEffect(()=> {
       async function  fetchCurrencies(){
         try {
@@ -29,25 +24,6 @@ export default function Rate(){
       }
       fetchCurrencies();
     }, []);
-
-    useEffect(()=> {
-      async function  fetchRates(){
-        try {
-          const response = await fetch(
-            `https://api.frankfurter.dev/v2/rates?base=${sendCurrent}&quotes=${receiveCurrent}`
-          );
-          if (!response.ok){
-            throw new Error("Something wrong");
-          }
-          const data = await response.json();
-          setRate(data[0].rate);
-        }
-        catch (error) {
-          console.log(error.message);
-        }
-      }
-      fetchRates();
-    }, [sendCurrent, receiveCurrent]);
   return(
     <>
     <div className="flex flex-col items-center">

@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 
-export default function Stats(){
+export default function Stats({sendCurrent, receiveCurrent}){
   const [stats, setStats] = useState([]);
 
     const yesterday = new Date(Date.now() - 86400000)
-  .toISOString()
-  .split("T")[0];  
+    .toISOString()
+    .split("T")[0];  
+
+    console.log(sendCurrent, receiveCurrent);
 
     useEffect(()=> {
         async function  fetchStat(){
           try {
             const response = await fetch(
-          `https://api.frankfurter.dev/v2/rates?from=${yesterday}&quotes=EUR&base=USD`
+          `https://api.frankfurter.dev/v2/rates?from=${yesterday}&quotes=${receiveCurrent}&base=${sendCurrent}`
             );
             if (!response.ok){
               throw new Error("Something wrong");
@@ -24,7 +26,7 @@ export default function Stats(){
           }
         }
         fetchStat();
-      }, []);
+      }, [sendCurrent, receiveCurrent]);
 
   const change =
     stats.length > 1

@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { AreaChart, Area, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
 
-export default function Chart() {
+export default function Chart({receiveCurrent, sendCurrent}) {
   const [stats, setStats] = useState([]);
   useEffect(() => {
     async function fetchStat() {
       try {
         const response = await fetch(
-          "https://api.frankfurter.dev/v2/rates?from=2026-01-01&group=week&base=USD&quotes=EUR"
+          `https://api.frankfurter.dev/v2/rates?from=2026-01-01&group=week&base=${sendCurrent}&quotes=${receiveCurrent}`
         );
 
         if (!response.ok) {
@@ -23,7 +23,7 @@ export default function Chart() {
     }
 
     fetchStat();
-  }, []);
+  }, [sendCurrent, receiveCurrent]);
 
   const data = stats.map(stat => ({
     date: stat.date,
@@ -37,9 +37,10 @@ export default function Chart() {
   return (
     <div className="flex items-center flex-col mx-70 py-10 bg-neutral-900">
       <div className="flex justify-between w-full px-8 mb-8">
-        <p>EUR/USD</p>
-        <div className="flex gap-8">
+        <p className="text-neutral-400">{sendCurrent}/{receiveCurrent}</p>
+        <div className="flex gap-2 text-neutral-400">
           <span>{stats.length > 0 ? (stats[stats.length - 1].rate) : '...'}</span>
+          <span>&#8729;</span>
           <span>{stats.length > 0 ? (stats[stats.length - 1].date) : '...'}</span>
         </div>
       </div>
