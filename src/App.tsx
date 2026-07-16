@@ -11,7 +11,10 @@ function App() {
   const [sendCurrent, setSendCurrent] = useState('USD');
   const [receiveCurrent, setReceiveCurrent] = useState('EUR');
   const [rate, setRate] = useState(null);
-  const [favourites,setFavourites] = useState([]);
+  const [favourites, setFavourites] = useState(() => {
+    const saved = localStorage.getItem("favourites");
+    return saved ? JSON.parse(saved) : [];
+  });  
   
     const handleFavourite = () => {
   setFavourites(prev => {
@@ -32,6 +35,15 @@ function App() {
     }
   });
 };
+
+  useEffect(()=>{
+    function addToStorage(){
+    localStorage.setItem("favourites", JSON.stringify(favourites));
+    }
+    addToStorage();
+
+  }, [favourites]);
+
   useEffect(()=> {
         async function fetchRates(){
           try {
