@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
 import exchange from '../assets/images/icon-exchange.svg';
 
-export default function Rate({sendCurrent, setSendCurrent, receiveCurrent, setReceiveCurrent, rate}){
+export default function Rate({sendCurrent, setSendCurrent, receiveCurrent, setReceiveCurrent, rate, handleFavourite, favourites}){
     const [currencies, setCurrencies] = useState([]);
     const [amount, setAmount] = useState(1000);
+
+    const isFavourite = favourites.some(
+    item => item.id === `${sendCurrent}/${receiveCurrent}`
+  );
 
     useEffect(()=> {
       async function  fetchCurrencies(){
@@ -52,10 +56,12 @@ export default function Rate({sendCurrent, setSendCurrent, receiveCurrent, setRe
       </div>
     </div>
       </div>
-    <div className="flex justify-between mt-4">
+    <div className="flex items-center justify-between mt-6 border-t border-dashed border-neutral-700 pt-6">
       <p>1 {sendCurrent} = {rate ? (rate.toFixed(4)) : '...'}{receiveCurrent} </p>
-      <div className="flex gap-8">
-        <p>Favorited</p>
+      <div className="flex gap-8 items-center">
+        <button onClick={handleFavourite} className={`pr-4 pl-3 py-2 rounded-md border-neongreen border flex gap-2 items-center cursor-pointer ${isFavourite ? "bg-neongreen text-black" : "bg-neutral-900 text-neutral-50"}`}>
+          <svg className={`h-5 w-5 ${isFavourite ? "fill-black": "fill-neutral-50"}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M309.5-18.9c-4.1-8-12.4-13.1-21.4-13.1s-17.3 5.1-21.4 13.1L193.1 125.3 33.2 150.7c-8.9 1.4-16.3 7.7-19.1 16.3s-.5 18 5.8 24.4l114.4 114.5-25.2 159.9c-1.4 8.9 2.3 17.9 9.6 23.2s16.9 6.1 25 2L288.1 417.6 432.4 491c8 4.1 17.7 3.3 25-2s11-14.2 9.6-23.2L441.7 305.9 556.1 191.4c6.4-6.4 8.6-15.8 5.8-24.4s-10.1-14.9-19.1-16.3L383 125.3 309.5-18.9z"/></svg>
+          {isFavourite ? 'Favorited': "Favorite"}</button>
         <p>Log Conversion</p>
       </div>
     </div>
