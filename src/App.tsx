@@ -5,12 +5,33 @@ import "./App.css";
 import Stats from "./components/Stats";
 import Chart from "./components/Chart";
 import { useEffect, useState } from "react";
+import TabList from "./components/TabList";
 function App() {
 
   const [sendCurrent, setSendCurrent] = useState('USD');
   const [receiveCurrent, setReceiveCurrent] = useState('EUR');
   const [rate, setRate] = useState(null);
+  const [favourites,setFavourites] = useState([]);
+  
+    const handleFavourite = () => {
+  setFavourites(prev => {
+    const id = `${sendCurrent}/${receiveCurrent}`;
+    const exists = prev.some(item => item.id === id);
 
+    if (exists) {
+      return prev.filter(item => item.id !== id);
+    } else {
+      return [
+        ...prev,
+        {
+          base: sendCurrent,
+          quote: receiveCurrent,
+          id,
+        },
+      ];
+    }
+  });
+};
   useEffect(()=> {
         async function fetchRates(){
           try {
@@ -35,12 +56,12 @@ function App() {
     <div className="text-white font-[Jetbrains]">
     <Header></Header>
     <LiveMarkets></LiveMarkets>
-    <Rate sendCurrent={sendCurrent} setSendCurrent={setSendCurrent} receiveCurrent={receiveCurrent} setReceiveCurrent={setReceiveCurrent} rate={rate}></Rate>
+    <Rate favourites={favourites} handleFavourite={handleFavourite} sendCurrent={sendCurrent} setSendCurrent={setSendCurrent} receiveCurrent={receiveCurrent} setReceiveCurrent={setReceiveCurrent} rate={rate}></Rate>
+    <TabList favourites={favourites}/>
     <Stats sendCurrent={sendCurrent} receiveCurrent={receiveCurrent}></Stats>
     <Chart sendCurrent={sendCurrent} receiveCurrent={receiveCurrent}></Chart>
     </div>
     </>
   )
 }
-
 export default App
