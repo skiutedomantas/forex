@@ -6,6 +6,7 @@ import Stats from "./components/Stats";
 import Chart from "./components/Chart";
 import { useEffect, useState } from "react";
 import TabList from "./components/TabList";
+import Favourites from "./components/Favourites";
 function App() {
 
   const [sendCurrent, setSendCurrent] = useState('USD');
@@ -30,6 +31,7 @@ function App() {
           base: sendCurrent,
           quote: receiveCurrent,
           id,
+          rate,
         },
       ];
     }
@@ -70,6 +72,7 @@ function App() {
     <LiveMarkets></LiveMarkets>
     <Rate favourites={favourites} handleFavourite={handleFavourite} sendCurrent={sendCurrent} setSendCurrent={setSendCurrent} receiveCurrent={receiveCurrent} setReceiveCurrent={setReceiveCurrent} rate={rate}></Rate>
     <TabList favourites={favourites}/>
+    <Favourites favourites={favourites}/>
     <Stats sendCurrent={sendCurrent} receiveCurrent={receiveCurrent}></Stats>
     <Chart sendCurrent={sendCurrent} receiveCurrent={receiveCurrent}></Chart>
     </div>
