@@ -11,6 +11,7 @@ function App() {
 
   const [sendCurrent, setSendCurrent] = useState('USD');
   const [receiveCurrent, setReceiveCurrent] = useState('EUR');
+  const [activeTab, setActiveTab] = useState('history');
   const [rate, setRate] = useState(null);
   const [favourites, setFavourites] = useState(() => {
     const saved = localStorage.getItem("favourites");
@@ -71,10 +72,13 @@ function App() {
     <Header></Header>
     <LiveMarkets></LiveMarkets>
     <Rate favourites={favourites} handleFavourite={handleFavourite} sendCurrent={sendCurrent} setSendCurrent={setSendCurrent} receiveCurrent={receiveCurrent} setReceiveCurrent={setReceiveCurrent} rate={rate}></Rate>
-    <TabList favourites={favourites}/>
-    <Favourites favourites={favourites}/>
+    <TabList favourites={favourites} activeTab={activeTab} setActiveTab={setActiveTab}/>
+    {activeTab === "history" && 
+      <>
     <Stats sendCurrent={sendCurrent} receiveCurrent={receiveCurrent}></Stats>
     <Chart sendCurrent={sendCurrent} receiveCurrent={receiveCurrent}></Chart>
+    </> }
+    {activeTab === "favourites" &&  <Favourites favourites={favourites}/> }
     </div>
     </>
   )
