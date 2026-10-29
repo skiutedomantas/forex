@@ -10,7 +10,6 @@ Built with a focus on simplicity and usability, this project combines a clean in
 - Convert between multiple currencies
 - Fetch currency exchange rates from an API
 - Interactive currency selection and amount input
-- Responsive design for desktop and mobile
 - Dynamic conversion results
 
 ## Built With
